@@ -11,4 +11,6 @@ package tikape.runko.domain;
  */
 public class RaakaAine {
     
+    String nimi;
+    
 }

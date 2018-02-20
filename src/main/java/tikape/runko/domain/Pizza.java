@@ -5,10 +5,15 @@
  */
 package tikape.runko.domain;
 
+import java.util.List;
+
 /**
  *
  * @author nielasse
  */
 public class Pizza {
+    
+    String nimi;
+    List<RaakaAine> ainekset;
     
 }
