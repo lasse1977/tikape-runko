@@ -12,5 +12,15 @@ package tikape.runko.domain;
 public class RaakaAine {
     
     String nimi;
+    int id;
+    
+    public RaakaAine(int id, String nimi) {
+        this.nimi = nimi;
+        this.id = id;
+    }
+
+    public String getNimi() {
+        return nimi;
+    }
     
 }

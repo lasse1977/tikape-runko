@@ -5,16 +5,17 @@ import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
-import tikape.runko.database.OpiskelijaDao;
+import tikape.runko.database.PizzaDao;
+import tikape.runko.database.RaakaAineDao;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Database database = new Database("jdbc:sqlite:opiskelijat.db");
+        Database database = new Database("jdbc:sqlite:pizzat.db");
         database.init();
 
-        OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
-
+        PizzaDao pizzaDao = new PizzaDao(database);
+        RaakaAineDao raakaAineDao = new RaakaAineDao(database);
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "tervehdys");
@@ -24,14 +25,14 @@ public class Main {
 
         get("/opiskelijat", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelijat", opiskelijaDao.findAll());
+            map.put("opiskelijat", pizzaDao.findAll());
 
             return new ModelAndView(map, "opiskelijat");
         }, new ThymeleafTemplateEngine());
 
         get("/opiskelijat/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelija", opiskelijaDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("opiskelija", pizzaDao.findOne(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "opiskelija");
         }, new ThymeleafTemplateEngine());
