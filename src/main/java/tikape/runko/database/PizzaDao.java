@@ -5,7 +5,11 @@
  */
 package tikape.runko.database;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Pizza;
 
@@ -22,17 +26,74 @@ public class PizzaDao implements Dao<Pizza, Integer> {
 
     @Override
     public Pizza findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Pizza WHERE id = ?");
+        stmt.setInt(1, key);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Pizza a = new Pizza(key, rs.getString("nimi"));
+
+        stmt.close();
+        rs.close();
+
+        conn.close();
+        return a;
     }
 
     @Override
     public List<Pizza> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Pizza> pizzat = new ArrayList<>();
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Pizza");
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            Pizza pizza = new Pizza(rs.getInt("id"), rs.getString("nimi"));
+            pizzat.add(pizza);
+        }
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        return pizzat;
     }
 
     @Override
     public void delete(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Pizza WHERE id = ?");
+        stmt.setInt(1, key);
+        stmt.executeUpdate();
+        
+        stmt.close();
+        conn.close();
+    }
+
+    @Override
+    public Pizza save(Pizza object) throws SQLException {
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Pizza (nimi) VALUES (?)");
+        stmt.setString(1, object.getNimi());
+        stmt.executeUpdate();
+        stmt.close();
+        
+        stmt = conn.prepareStatement("SELECT * FROM Pizza WHERE nimi = ?");
+        stmt.setString(1, object.getNimi());
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        
+        Pizza p = new Pizza(rs.getInt("id"), rs.getString("nimi"));
+        stmt.close();
+        rs.close();
+        conn.close();
+        
+        return p;
     }
     
 }
