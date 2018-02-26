@@ -14,9 +14,6 @@ public class Main {
         Database database = new Database("jdbc:sqlite:pizzat.db");
         database.init();
         
-        while (true){
-            break;
-        }
 
         PizzaDao pizzaDao = new PizzaDao(database);
         RaakaAineDao raakaAineDao = new RaakaAineDao(database);
