@@ -1,4 +1,4 @@
-# tikape-runko
+# Pizzakone
 
-Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
+Ryhmätyön toisen vaiheen web-sovellus.
 

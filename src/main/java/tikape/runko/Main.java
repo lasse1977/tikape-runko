@@ -31,18 +31,18 @@ public class Main {
             return new ModelAndView(map, "pizzat");
         }, new ThymeleafTemplateEngine());
         
-        get("/raakaAineet", (req, res) -> {
+        get("/taytteet", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("raakaAineet", raakaAineDao.findAll());
+            map.put("taytteet", raakaAineDao.findAll());
 
-            return new ModelAndView(map, "raakaAineet");
+            return new ModelAndView(map, "taytteet");
         }, new ThymeleafTemplateEngine());
 
-        get("/opiskelijat/:id", (req, res) -> {
+        get("/pizzat/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelija", pizzaDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("pizza", pizzaDao.findOne(Integer.parseInt(req.params("id"))));
 
-            return new ModelAndView(map, "opiskelija");
+            return new ModelAndView(map, "pizza");
         }, new ThymeleafTemplateEngine());
     }
 }
