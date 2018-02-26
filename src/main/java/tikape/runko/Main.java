@@ -16,6 +16,7 @@ public class Main {
 
         PizzaDao pizzaDao = new PizzaDao(database);
         RaakaAineDao raakaAineDao = new RaakaAineDao(database);
+        
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "tervehdys");
@@ -23,11 +24,18 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
 
-        get("/opiskelijat", (req, res) -> {
+        get("/pizzat", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelijat", pizzaDao.findAll());
+            map.put("pizzat", pizzaDao.findAll());
 
-            return new ModelAndView(map, "opiskelijat");
+            return new ModelAndView(map, "pizzat");
+        }, new ThymeleafTemplateEngine());
+        
+        get("/raakaAineet", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("raakaAineet", raakaAineDao.findAll());
+
+            return new ModelAndView(map, "raakaAineet");
         }, new ThymeleafTemplateEngine());
 
         get("/opiskelijat/:id", (req, res) -> {
