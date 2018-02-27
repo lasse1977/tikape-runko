@@ -20,7 +20,7 @@ public class Pizza {
 
     public Pizza(Integer id, String string) {
         this.id = id;
-        this.nimi = nimi;
+        this.nimi = string;
     }
     
     public Integer getId() {

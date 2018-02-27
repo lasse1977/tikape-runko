@@ -40,7 +40,7 @@ public class Database {
         lista.add("CREATE TABLE RaakaAine (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("INSERT INTO Pizza (nimi) VALUES ('Bolognese');");
         lista.add("INSERT INTO RaakaAine (nimi) VALUES ('Jauheliha');");
-        //lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Homeros');");
+        lista.add("INSERT INTO Pizza (nimi) VALUES ('Margarita');");
 
         return lista;
     }
