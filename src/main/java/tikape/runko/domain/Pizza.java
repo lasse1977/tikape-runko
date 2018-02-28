@@ -5,6 +5,7 @@
  */
 package tikape.runko.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class Pizza {
     public Pizza(Integer id, String nimi) {
         this.id = id;
         this.nimi = nimi;
+        this.ainekset = new ArrayList<>();
     }
     
     public Integer getId() {
@@ -37,6 +39,14 @@ public class Pizza {
     
     public void setNimi(String nimi) {
         this.nimi = nimi;
+    }
+    
+    public void lisaaAine(RaakaAine r) {
+        this.ainekset.add(r);
+    }
+    
+    public List<RaakaAine> getIngredients () {
+        return this.ainekset;
     }
     
     

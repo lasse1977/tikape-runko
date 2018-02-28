@@ -13,7 +13,7 @@
         <dl>
             <dd th:each="pizza: ${pizzat}">
                 <span th:text="${pizza.id}">1</span>
-                <a th:href="@{/pizzat/{id}/1(id=${pizza.nimi})}"><span th:text=${pizza.nimi}>Esimerkki</span></a>
+                <a th:href="${/pizza/{id}/1(id=${pizza.nimi})}"><span th:text=${pizza.nimi}>Esimerkki</span></a>
             </dd>
         </dl>
         
