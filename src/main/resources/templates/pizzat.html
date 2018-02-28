@@ -10,12 +10,12 @@
 
         <h1>Pizzat:</h1>
         
-        <ul>
-            <li th:each="pizza: ${pizzat}">
+        <dl>
+            <dd th:each="pizza: ${pizzat}">
                 <span th:text="${pizza.id}">1</span>
-                <span th:text="${pizza.nimi}">Esimerkki</span>
-            </li>
-        </ul>
+                <a th:href="@{/pizzat/{id}/1(id=${pizza.nimi})}"><span th:text=${pizza.nimi}>Esimerkki</span></a>
+            </dd>
+        </dl>
         
         <form method="POST" action="/pizzat">
             <span>Uusi pizza:</span><br/>

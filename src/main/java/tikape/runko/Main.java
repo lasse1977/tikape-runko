@@ -12,6 +12,10 @@ import tikape.runko.domain.Pizza;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        if (System.getenv("PORT") != null) {
+        port(Integer.valueOf(System.getenv("PORT")));
+        }
+        
         Database database = new Database("jdbc:sqlite:pizzat.db");
         database.init();
         
