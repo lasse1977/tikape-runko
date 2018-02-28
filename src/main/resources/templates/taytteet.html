@@ -13,11 +13,17 @@
         <ul>
             <li th:each="tayte: ${taytteet}">
                 <span th:text="${tayte.id}">1</span>
-                <span th:text="${tayte.nimi}">Essi esimerkki</span>
+                <span th:text="${tayte.nimi}">Esimerkki</span>
                 
             </li>
         </ul>
 
-
+        <form method="POST" action="/taytteet">
+            <span>Uusi täyte:</span><br/>
+            <span>
+                <input type="text" name="nimi"/><br/>
+                <input type="submit" value="Lisää uusi täyte"/>
+            </span>
+        </form>
     </body>
 </html>
