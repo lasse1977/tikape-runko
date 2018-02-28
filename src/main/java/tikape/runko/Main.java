@@ -9,6 +9,7 @@ import tikape.runko.database.Database;
 import tikape.runko.database.PizzaDao;
 import tikape.runko.database.RaakaAineDao;
 import tikape.runko.domain.Pizza;
+import tikape.runko.domain.RaakaAine;
 
 public class Main {
 
@@ -51,6 +52,14 @@ public class Main {
 
             return new ModelAndView(map, "taytteet");
         }, new ThymeleafTemplateEngine());
+        
+        post("/tayteet", (req, res) -> {
+            String nimi = req.queryParams("nimi");
+            System.out.println("Vastaanotettiin " + nimi);
+            raakaAineDao.save(new RaakaAine(1, nimi));
+
+            return nimi + " lisätty";
+        });
 
         get("/pizzat/:id", (req, res) -> {
             HashMap map = new HashMap<>();
