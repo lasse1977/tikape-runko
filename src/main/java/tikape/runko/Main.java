@@ -61,11 +61,21 @@ public class Main {
             return new ModelAndView(map, "taytteet");
         }, new ThymeleafTemplateEngine());
 
-        get("/pizzat/:id", (req, res) -> {
+        get("/pizza/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("pizza", pizzaDao.findOne(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "pizza");
         }, new ThymeleafTemplateEngine());
+        
+        post("/pizza/:id", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("järjestys"));
+            String tayte = req.queryParams("lisää täyte");
+            System.out.println("Vastaanotettiin " + id);
+            pizzaDao.findOne(id).lisaaTayte(raakaAineDao.findOneByName(tayte));
+            
+            res.redirect("/pizza/:id");
+            return "";
+        });
     }
 }

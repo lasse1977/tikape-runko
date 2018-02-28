@@ -8,7 +8,20 @@
 
     <body>
 
-        <h1 th:text="${pizza.nimi}">Hei maailma!</h1>
+        <h2 th:text="${pizza.nimi}">pizza</h2>
+        
+        <form method="POST" action="">
+            Lisää täyte<br/>
+            <input type="text"/><br/>
+            <br/>
+            Järjestys<br/>
+            <input type="text"/><br/>
+            Määrä<br/>
+            <input type="text"/><br/>
+            Ohje<br/>
+            <input type="text"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
 
     </body>
 </html>
