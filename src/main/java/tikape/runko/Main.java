@@ -2,6 +2,7 @@ package tikape.runko;
 
 import java.util.HashMap;
 import spark.ModelAndView;
+import spark.Spark;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
@@ -14,9 +15,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         if (System.getenv("PORT") != null) {
+<<<<<<< HEAD
         port(Integer.valueOf(System.getenv("PORT")));
         }
         
+=======
+            Spark.port(Integer.valueOf(System.getenv("PORT")));
+        }
+>>>>>>> 361b269bc819f75f9d623c562ba1e0eafeb260b7
         Database database = new Database("jdbc:sqlite:pizzat.db");
         database.init();
         
@@ -60,6 +66,14 @@ public class Main {
 
             return new ModelAndView(map, "taytteet");
         }, new ThymeleafTemplateEngine());
+        
+        post("/tayteet", (req, res) -> {
+            String nimi = req.queryParams("nimi");
+            System.out.println("Vastaanotettiin " + nimi);
+            raakaAineDao.save(new RaakaAine(1, nimi));
+
+            return nimi + " lisätty";
+        });
 
         get("/pizza/:id", (req, res) -> {
             HashMap map = new HashMap<>();

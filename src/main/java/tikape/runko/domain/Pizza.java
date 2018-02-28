@@ -41,8 +41,17 @@ public class Pizza {
         this.nimi = nimi;
     }
     
+<<<<<<< HEAD
     public void lisaaTayte(RaakaAine aine) {
         this.ainekset.add(aine);
+=======
+    public void lisaaAine(RaakaAine r) {
+        this.ainekset.add(r);
+    }
+    
+    public List<RaakaAine> getIngredients () {
+        return this.ainekset;
+>>>>>>> 361b269bc819f75f9d623c562ba1e0eafeb260b7
     }
     
     
