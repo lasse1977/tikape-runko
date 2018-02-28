@@ -8,21 +8,24 @@
 
     <body>
 
-        <h1>Täytteet:</h1>
+        <h1>Taytteet:</h1>
         
         <ul>
             <li th:each="tayte: ${taytteet}">
                 <span th:text="${tayte.id}">1</span>
-                <span th:text="${tayte.nimi}">Essi esimerkki</span>
-                
+                <span th:text="${tayte.nimi}">Esimerkki</span>
+                <a href="/"
             </li>
         </ul>
-        <form method="POST" action="/tayteet">
+        
+        <form method="POST" action="/taytteet">
             <span>Uusi tayte:</span><br/>
-            <input type="text" name="nimi"/><br/>
-            <input type="submit" value="Lisää uusi tayte"/>
+            <span>
+                <input type="text" name="nimi"/><br/>
+                <input type="submit" value="Lisaa uusi tayte"/>
+            </span>
         </form>
-
-
+        
+        <p><a href="/">Etusivu</a></p>
     </body>
 </html>

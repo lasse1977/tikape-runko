@@ -50,7 +50,30 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
 
         return a;
     }
+    
+    public RaakaAine findOneByName(String name) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM RaakaAine WHERE nimi = ?");
+        stmt.setObject(1, name);
 
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Integer id = rs.getInt("id");
+        String nimi = rs.getString("nimi");
+
+        RaakaAine a = new RaakaAine(id, nimi);
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return a;
+    }
+    
     @Override
     public List<RaakaAine> findAll() throws SQLException {
 

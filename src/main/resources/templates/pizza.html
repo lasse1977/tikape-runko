@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title th:text="${pizza.nimi}">pizza</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+
+        <h2 th:text="${pizza.nimi}">pizza</h2>
+        
+        <form method="POST" action="">
+            Lisää täyte<br/>
+            <input type="text"/><br/>
+            <br/>
+            Järjestys<br/>
+            <input type="text"/><br/>
+            Määrä<br/>
+            <input type="text"/><br/>
+            Ohje<br/>
+            <input type="text"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+
+    </body>
+</html>

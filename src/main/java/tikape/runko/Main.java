@@ -17,8 +17,7 @@ public class Main {
         if (System.getenv("PORT") != null) {
             port(Integer.valueOf(System.getenv("PORT")));
         }
-                  
-
+ 
         Database database = new Database("jdbc:sqlite:pizzat.db");
         database.init();
         
@@ -44,8 +43,16 @@ public class Main {
             String nimi = req.queryParams("nimi");
             System.out.println("Vastaanotettiin " + nimi);
             pizzaDao.save(new Pizza(1, nimi));
-
-            return nimi + " lisätty";
+            res.redirect("/pizzat");
+            return "";
+        });
+        
+        post("/taytteet", (req, res) -> {
+            String nimi = req.queryParams("nimi");
+            System.out.println("Vastaanotettiin " + nimi);
+            raakaAineDao.save(new RaakaAine(1, nimi));
+            res.redirect("/taytteet");
+            return "";
         });
         
         get("/taytteet", (req, res) -> {
@@ -63,11 +70,28 @@ public class Main {
             return "";
         });
 
-        get("/pizzat/:id", (req, res) -> {
+        get("/pizza/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("pizza", pizzaDao.findOne(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "pizza");
         }, new ThymeleafTemplateEngine());
+        
+        get("/poista/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("pizza", pizzaDao.findOne(Integer.parseInt(req.params("id"))));
+
+            return new ModelAndView(map, "pizza");
+        }, new ThymeleafTemplateEngine());
+        
+        post("/pizza/:id", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("järjestys"));
+            String tayte = req.queryParams("lisää täyte");
+            System.out.println("Vastaanotettiin " + id);
+            pizzaDao.findOne(id).lisaaAine(raakaAineDao.findOneByName(tayte));
+            
+            res.redirect("/pizza/:id");
+            return "";
+        });
     }
 }

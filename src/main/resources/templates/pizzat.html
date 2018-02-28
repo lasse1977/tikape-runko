@@ -13,16 +13,23 @@
         <dl>
             <dd th:each="pizza: ${pizzat}">
                 <span th:text="${pizza.id}">1</span>
-                <a th:href="${/pizza/{id}/1(id=${pizza.nimi})}"><span th:text=${pizza.nimi}>Esimerkki</span></a>
+                <a th:href="${'/pizza/' + pizza.id}"><span th:text="${pizza.nimi}">Esimerkki</span></a>
+                <a th:href="${'/poista/' + pizza.id}"><span th:text="((poista))"> (poista) </span></a>
             </dd>
         </dl>
+                
+            
+
         
         <form method="POST" action="/pizzat">
             <span>Uusi pizza:</span><br/>
-            <input type="text" name="nimi"/><br/>
-            <input type="submit" value="Lisää uusi pizza"/>
+            <span>
+                <input type="text" name="nimi"/><br/>
+                <input type="submit" value="Lisää uusi pizza"/>
+            </span>
         </form>
 
-
+        <p><a href="/">Etusivu</a></p>
+        
     </body>
 </html>
