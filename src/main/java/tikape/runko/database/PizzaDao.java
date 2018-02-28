@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Pizza;
+import tikape.runko.domain.RaakaAine;
 
 /**
  *
@@ -43,6 +44,10 @@ public class PizzaDao implements Dao<Pizza, Integer> {
 
         conn.close();
         return a;
+    }
+    
+    public List<RaakaAine> listAllIngredients(Pizza p) throws SQLException {
+        return p.getIngredients();
     }
 
     @Override
