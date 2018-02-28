@@ -16,6 +16,12 @@
                 <span th:text="${pizza.nimi}">Esimerkki</span>
             </li>
         </ul>
+        
+        <form method="POST" action="/pizzat">
+            <span>Uusi pizza:</span><br/>
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisää uusi pizza"/>
+        </form>
 
 
     </body>

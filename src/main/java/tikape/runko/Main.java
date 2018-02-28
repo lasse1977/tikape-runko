@@ -7,6 +7,7 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
 import tikape.runko.database.PizzaDao;
 import tikape.runko.database.RaakaAineDao;
+import tikape.runko.domain.Pizza;
 
 public class Main {
 
@@ -31,6 +32,14 @@ public class Main {
 
             return new ModelAndView(map, "pizzat");
         }, new ThymeleafTemplateEngine());
+        
+        post("/pizzat", (req, res) -> {
+            String nimi = req.queryParams("nimi");
+            System.out.println("Vastaanotettiin " + nimi);
+            pizzaDao.save(new Pizza(1, nimi));
+
+            return nimi + " lisätty";
+        });
         
         get("/taytteet", (req, res) -> {
             HashMap map = new HashMap<>();

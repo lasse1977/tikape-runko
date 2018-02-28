@@ -18,9 +18,9 @@ public class Pizza {
     private List<RaakaAine> ainekset;
     
 
-    public Pizza(Integer id, String string) {
+    public Pizza(Integer id, String nimi) {
         this.id = id;
-        this.nimi = string;
+        this.nimi = nimi;
     }
     
     public Integer getId() {

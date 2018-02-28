@@ -9,6 +9,15 @@
     <body>
 
         <h1>Täytteet:</h1>
+        
+        <ul>
+            <li th:each="tayte: ${taytteet}">
+                <span th:text="${tayte.id}">1</span>
+                <span th:text="${tayte.nimi}">Essi esimerkki</span>
+                
+            </li>
+        </ul>
+
 
     </body>
 </html>
